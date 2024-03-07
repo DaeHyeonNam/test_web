@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Two-Way Communication</title>
+</head>
+<body>
+<h1>Two-Way Communication</h1>
+<img id="testImage" src="test.png" width="350" height="260" alt="no search image">
+<!-- <img id="testImage" src="/data/user/0/com.example.test_project/app_flutter/image.jpg" width="350" height="260" alt="no search image"> -->
+
+<p>Message from Flutter: <span id="messageFromFlutter"></span></p>
+<button onclick="sendMessageToFlutter()">Send Message to Flutter</button>
+
+<script>
+    // Function to receive messages from Flutter
+    function receiveMessageFromFlutter(message) {
+      document.getElementById('messageFromFlutter').innerText = message;
+    }
+
+    // Function to send a message to Flutter
+    function sendMessageToFlutter() {
+      var message = "Hello from the web!";
+      messageHandler.postMessage(message);
+    }
+
+    function setImage(imagePath) {
+      document.getElementById('messageFromFlutter').innerText = "received";
+      document.getElementById('testImage').src = imagePath;
+    }
+
+    window.addEventListener("setImage", function(event) {
+      document.getElementById('testImage').src = imagePath;
+    });
+  </script>
+</body>
+</html>
